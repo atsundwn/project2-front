@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/favicon.ico">
 
-    <title>Home - Click of Five</title>
+    <title>Click of Five</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/bootstrap.min.css" rel="stylesheet">
@@ -40,13 +40,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Click of Five</a>
+          <a class="navbar-brand" href="index.html">Click of Five</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="register.html">Register</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="navbutton active"><a href="index.html">Home</a></li>
+            <li class="navbutton" id="registerbuttonli"><a href="#register" id="registerbutton">Register</a></li>
+            <li class="navbutton" id="loginbuttonli"><a href="#login" id="loginbutton">Login</a></li>
+            <li class="navbutton" id="logoutbuttonli"><a href="#logout">Logout</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -71,15 +72,33 @@
 
     <div class="container">
 
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
+      <div class="register">
+
+        <form class="form-signin">
+          <h2 class="form-signin-heading">Please Register</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
+          <label for="inputPassword" class="sr-only">Re-enter password</label>
+          <input type="password" id="inputPassword2" class="form-control" placeholder="Re-enter password" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+
+      </div> <!-- /register -->
+
+      <div class="login">
+
+        <form class="form-signin">
+        <h2 class="form-signin-heading">Please Login</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword2" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+      </div> <!-- /login -->
 
     </div> <!-- /container -->
 
@@ -89,6 +108,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="assets/bootstrap.min.js"></script>
+    <script src="api.js"></script>
+    <script src="display.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/ie10-viewport-bug-workaround.js"></script>
   </body>
