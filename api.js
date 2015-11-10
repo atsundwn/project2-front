@@ -1,6 +1,7 @@
 'use strict';
 var cofapi = {
-  cof: 'localhost:3000',
+  cof: 'http://localhost:3000',
+  token: '',
 
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
@@ -41,7 +42,58 @@ var cofapi = {
   },
 };
 
+var form2object = function(form) {
+  var data = {};
+  $(form).children().each(function(index, element) {
+    var type = $(this).attr('type');
+    if ($(this).attr('name') && type !== 'submit') {
+      data[$(this).attr('name')] = $(this).val();
+    }
+  });
+  return data;
+  console.log(data);
+};
+
+var wrap = function wrap(root, formData) {
+  var wrapper = {};
+  wrapper[root] = formData;
+  return wrapper;
+  console.log(wrapper);
+};
+
+var callback = function callback(error, data) {
+  if (error) {
+    console.error(error);
+    $('#result').val('status: ' + error.status + ', error: ' +error.error);
+    return;
+  }
+  $('#result').val(JSON.stringify(data, null, 4));
+};
+
+
+
+
 $(document).ready(function(){
 
+  $('#registerForm').on('submit', function(e) {
+    var credentials = wrap('credentials', form2object(this));
+    console.log(credentials);
+    cofapi.register(credentials, callback);
+    e.preventDefault();
+  });
+
+  $('#loginForm').on('submit', function(e) {
+    var credentials = wrap('credentials', form2object(this));
+    var cb = function cb(error, data) {
+      if (error) {
+        callback(error);
+        return;
+      }
+      callback(null, data);
+      cofapi.token = data.user.token;
+    };
+    e.preventDefault();
+    cofapi.login(credentials, cb);
+  });
 
 });
