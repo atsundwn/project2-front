@@ -1,6 +1,7 @@
 'use strict';
 var cofapi = {
   cof: 'http://localhost:3000',
+  id: null,
   token: '',
 
   ajax: function(config, cb) {
@@ -40,6 +41,23 @@ var cofapi = {
       dataType: 'json'
     }, callback);
   },
+
+  //Authenticated api actions
+
+  logout: function (id, token, callback) {
+    this.ajax({
+      method: 'DELETE',
+      url: this.cof + '/logout/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: JSON.stringify({}),
+      dataType: 'json'
+    }, callback);
+  },
+
+
+
 };
 
 var form2object = function(form) {
@@ -80,6 +98,7 @@ $(document).ready(function(){
     console.log(credentials);
     cofapi.register(credentials, callback);
     e.preventDefault();
+    $('.register').css('display','none');
   });
 
   $('#loginForm').on('submit', function(e) {
@@ -91,9 +110,18 @@ $(document).ready(function(){
       }
       callback(null, data);
       cofapi.token = data.user.token;
+      cofapi.id = data.user.id;
     };
     e.preventDefault();
     cofapi.login(credentials, cb);
+    $('.login').css('display','none');
+  });
+
+  $('#logoutbutton').on('click', function(e) {
+    var id = cofapi.id;
+    var token = cofapi.token;
+    cofapi.logout(id, token, callback);
+    console.log('Successfully logged out');
   });
 
 });

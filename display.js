@@ -14,9 +14,19 @@ $(document).ready(function(){
     $('#loginbuttonli').addClass('active');
   });
 
+  $('#logoutbutton').on('click', function(){
+    $('.navbutton').removeClass('active');
+    $('.register').css('display','none');
+    $('.login').css('display','none');
+    $('#logoutbuttonli').addClass('active');
+  });
 
-
-
+  $('#loginHere').on('click', function(){
+    $('.navbutton').removeClass('active');
+    $('.register').css('display','none');
+    $('.login').css('display','block');
+    $('#loginbuttonli').addClass('active');
+  });
 
 
 
