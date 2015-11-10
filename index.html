@@ -91,15 +91,30 @@
       <div class="login">
 
         <form class="form-signin" id="loginForm">
-        <h2 class="form-signin-heading">Please Login</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input name="password" type="password" id="inputPassword2" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+          <h2 class="form-signin-heading">Please Login</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input name="password" type="password" id="inputPassword2" class="form-control" placeholder="Password" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        </form>
 
       </div> <!-- /login -->
+
+      <div class="profile">
+
+        <form class="form-signin" id="profileForm">
+          <h2 class="form-signin-heading">Edit Your Profile</h2>
+          <label for="inputGivenName" class="sr-only">First Name</label>
+          <input name="given_name" type="text" id="inputGivenName" class="form-control" placeholder="First Name" required autofocus>
+          <label for="inputSurname" class="sr-only">Last Name</label>
+          <input name="surname" type="text" id="inputSurname" class="form-control" placeholder="Last Name" required>
+          <label for="inputGroup" class="sr-only">Group</label>
+          <input name="group" type="text" id="inputGroup" class="form-control" placeholder="Group" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+
+      </div> <!-- /profile -->
 
       <label for="result">Result</label>
       <textarea id="result"></textarea>
