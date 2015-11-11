@@ -38,6 +38,7 @@ $(document).ready(function(){
     $('.login').css('display','none');
     $('.profile').css('display','block');
     $('#profilebuttonli').addClass('active');
+    profileExist();
   });
 
 
