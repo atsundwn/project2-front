@@ -32,15 +32,30 @@ var cofapi = {
     }, callback);
   },
 
-  listQuestions: function listQuestions(callback){
+  listQuestions: function listQuestions(callback) {
     this.ajax({
       method: 'GET',
       url: this.cof + '/questions',
-      contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify({}),
       dataType: 'json'
     }, callback);
   },
+
+  listFists: function listFists(callback) {
+    this.ajax({
+      methosd: 'GET',
+      url: this.cof + '/fists',
+      dataType: 'json'
+    }, callback);
+  },
+
+  listProfiles: function listProfiles(callback) {
+    this.ajax({
+      methosd: 'GET',
+      url: this.cof + '/profiles',
+      dataType: 'json'
+    }, callback);
+  },
+
 
   //Authenticated api actions
 
@@ -53,6 +68,19 @@ var cofapi = {
       },
       data: JSON.stringify({}),
       dataType: 'json'
+    }, callback);
+  },
+
+  createProfile: function (token, callback) {
+    this.ajax({
+      method: 'POST',
+      url: this.cof + 'profiles',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: JSON.stringify({}),
+      dataType: 'json'
+
     }, callback);
   },
 
@@ -99,6 +127,8 @@ $(document).ready(function(){
     cofapi.register(credentials, callback);
     e.preventDefault();
     $('.register').css('display','none');
+    $('.login').css('display','block');
+    $('#registerForm').children('input').val('');
   });
 
   $('#loginForm').on('submit', function(e) {
@@ -115,6 +145,21 @@ $(document).ready(function(){
     e.preventDefault();
     cofapi.login(credentials, cb);
     $('.login').css('display','none');
+    $('#loginForm').children('input').val('');
+  });
+
+  $('#profileForm').on('submit', function(e) {
+    var profile = wrap('profile', form2object(this));
+    var cb = function cb(error, data) {
+      if (error) {
+        callback(error);
+        return;
+      }
+      callback(null, data);
+
+    };
+    e.preventDefault();
+    cofapi.updateProfile(profile, cb);
   });
 
   $('#logoutbutton').on('click', function(e) {
@@ -122,6 +167,10 @@ $(document).ready(function(){
     var token = cofapi.token;
     cofapi.logout(id, token, callback);
     console.log('Successfully logged out');
+  });
+
+  $('#defaultButton').on('click', function(e) {
+    cofapi.listProfiles(callback);
   });
 
 });
