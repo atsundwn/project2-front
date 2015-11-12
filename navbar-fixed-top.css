@@ -3,13 +3,13 @@ body {
   padding-top: 70px;
 }
 
-.register, .login, .profile {
+.register, .login, .profile, .myfistview {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
   display: none;
 }
-#profilebutton {
+#profilebutton, #fistbutton {
   display: none;
 }
 .form-signin {

@@ -4,6 +4,8 @@ var visual = {
   $('.register').css('display','none');
   $('.login').css('display','none');
   $('.profile').css('display','none');
+  $('.myfistview').css('display','none');
+  $('.questionview').css('display','none');
   }
 };
 
@@ -12,6 +14,7 @@ $(document).ready(function(){
   $('#homeButton').on('click', function(){
     visual.clear();
     $('#homebuttonli').addClass('active');
+    $('.questionview').show();
   });
 
   $('#registerbutton').on('click', function(){
@@ -42,6 +45,11 @@ $(document).ready(function(){
     $('.profile').css('display','block');
     $('#profilebuttonli').addClass('active');
     profileExist();
+  });
+
+  $('#fistbutton').on('click', function(){
+    visual.clear();
+    $('.myfistview').show();
   });
 
 });

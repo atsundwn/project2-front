@@ -42,10 +42,10 @@ var cofapi = {
     }, callback);
   },
 
-  listFists: function listFists(callback) {
+  listFists: function listFists(query, callback) {
     this.ajax({
       methosd: 'GET',
-      url: this.cof + '/fists',
+      url: this.cof + '/fists' + query,
       dataType: 'json'
     }, callback);
   },
@@ -104,8 +104,53 @@ var cofapi = {
     }, callback);
   },
 
+  createQuestion: function (data, token, callback) {
+    this.ajax({
+      method: 'POST',
+      url: this.cof + '/questions',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: data,
+      dataType: 'json'
+    }, callback);
+  },
 
+  updateQuestion: function (id, data, token, callback) {
+    this.ajax({
+      method: 'PATCH',
+      url: this.cof + '/questions/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: data,
+      dataType: 'json'
+    }, callback);
+  },
 
+  createFist: function (data, token, callback) {
+    this.ajax({
+      method: 'POST',
+      url: this.cof + '/fists',
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: data,
+      dataType: 'json'
+    }, callback);
+  },
+
+  updateFist: function (id, data, token, callback) {
+    this.ajax({
+      method: 'PATCH',
+      url: this.cof + '/fists/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      data: data,
+      dataType: 'json'
+    }, callback);
+  }
 };
 
 var form2object = function(form) {
@@ -158,15 +203,26 @@ $(document).ready(function(){
     method: 'GET',
     url: cofapi.cof + "/questions"
   }).done(function(data){
-
     var questionHTML = questionIndexTemplate({questions: data.questions});
-
     $("#allQuestions").html(questionHTML);
   }).fail(function(data){
     console.error(data);
   });
 
+  $('#fistbutton').on('click', function() {
+    var fistIndexTemplate = Handlebars.compile($("#fists-index").html());
+    var query = '?profile_id=' + cofapi.id;
 
+    $.ajax({
+      method: 'GET',
+      url: cofapi.cof + "/fists" + query
+    }).done(function(data){
+      var fistHTML = fistIndexTemplate({fists: data.fists});
+      $("#myFists").html(fistHTML);
+    }).fail(function(data){
+      console.error(data);
+    });
+  });
 
 
 
@@ -197,6 +253,7 @@ $(document).ready(function(){
     $('.login').css('display','none');
     $('#loginForm').children('input').val('');
     $('#profilebutton').css('display','block');
+    $('#fistbutton').css('display','block');
   });
 
   $('#profileForm').on('submit', function(e) {

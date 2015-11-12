@@ -63,7 +63,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="navbutton" id="profilebuttonli"><a href="#profile" id="profilebutton">My Profile</a></li>
-            <li><a href="#" id="defaultButton">Default</a></li>
+            <li class="navbutton" id="fistbuttonli"><a href="#fists" id="fistbutton">My Fists</a></li>
             <li><a href="../navbar-static-top/">Static top</a></li>
             <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
           </ul>
@@ -120,24 +120,55 @@
 
       <div class="questionview">
         <h1>Questions</h1>
-          <ul id='questions'>
-          </ul>
 
           <table class="table table-striped">
             <thead>
               <tr>
-                <th></th>
+                <th>Rate</th>
                 <th>Topic</th>
+                <th>Result</th>
               </tr>
             </thead>
 
             <tbody id='allQuestions'>
               <script id="questions-index" type="text/x-handlebars-template">
+                <div>
+                  {{#each questions}}
+                  <tr>
+                    <td><button type="button" class="btn btn-success">Rate</button></td>
+                    <td>{{topic}}</td>
+                    <td><button type="button" class="btn btn-success">Result</button></td>
+                  </tr>
+                {{/each}}
+                </div>
+              </script>
+            </tbody>
+
+          </table>
+      </div> <!-- /questionview -->
+
+      <div class="myfistview">
+        <h1>My Fists</h1>
+
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Button</th>
+                <th>Fist of Five</th>
+                <th>Question ID</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+
+            <tbody id='myFists'>
+              <script id="fists-index" type="text/x-handlebars-template">
               <div>
-                {{#each questions}}
+                {{#each fists}}
                 <tr>
-                  <th></th>
-                  <th>{{topic}}</th>
+                  <td><button type="button" class="btn btn-success">Delete</button></td>
+                  <td>{{value}}</td>
+                  <td>{{question_id}}</td>
+                  <td><button type="button" class="btn btn-success">Result</button></td>
                 </tr>
                 {{/each}}
                 </div>
@@ -145,9 +176,7 @@
             </tbody>
 
           </table>
-
-
-      </div> <!-- /questionview -->
+      </div> <!-- /myfistview -->
 
       <label for="result">Back-end Output</label>
       <p id="result"></p>
