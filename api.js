@@ -50,10 +50,10 @@ var cofapi = {
     }, callback);
   },
 
-  listProfiles: function listProfiles(callback) {
+  listProfiles: function listProfiles(query, callback) {
     this.ajax({
       methosd: 'GET',
-      url: this.cof + '/profiles',
+      url: this.cof + '/profiles' + query,
       dataType: 'json'
     }, callback);
   },
@@ -131,17 +131,17 @@ var callback = function callback(error, data) {
     $('#result').val('status: ' + error.status + ', error: ' +error.error);
     return;
   }
-  $('#result').val(JSON.stringify(data, null, 4));
+  $('#result').text(JSON.stringify(data, null, 4));
 };
 
 var profileExist = function profileExist() {
-  var id = cofapi.id;
-  cofapi.getProfile(id, function (error, data) {
-    if (error) {
+  var query = '?user_id=' + cofapi.id;
+  cofapi.listProfiles(query, function (error, data) {
+    if (data.profiles[0] === undefined) {
       console.log('false');
       cofapi.profile = false;
       return;
-    } else {
+    } else if (data.profiles[0].user_id === cofapi.id) {
       console.log('true');
       cofapi.profile = true;
      return;
@@ -152,9 +152,27 @@ var profileExist = function profileExist() {
 
 $(document).ready(function(){
 
+  var questionIndexTemplate = Handlebars.compile($("#questions-index").html());
+
+  $.ajax({
+    method: 'GET',
+    url: cofapi.cof + "/questions"
+  }).done(function(data){
+
+    var questionHTML = questionIndexTemplate({questions: data.questions});
+
+    $("#allQuestions").html(questionHTML);
+  }).fail(function(data){
+    console.error(data);
+  });
+
+
+
+
+
+
   $('#registerForm').on('submit', function(e) {
     var credentials = wrap('credentials', form2object(this));
-    console.log(credentials);
     cofapi.register(credentials, callback);
     e.preventDefault();
     $('.register').css('display','none');
@@ -211,6 +229,8 @@ $(document).ready(function(){
     cofapi.logout(id, token, callback);
     console.log('Successfully logged out');
   });
+
+
 
   $('#defaultButton').on('click', function() {
     profileExist();

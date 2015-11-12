@@ -36,9 +36,9 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar">a</span>
-            <span class="icon-bar">b</span>
-            <span class="icon-bar">c</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="index.html">Click of Five</a>
         </div>
@@ -104,6 +104,7 @@
 
       <div class="profile">
 
+        <div id="myProfile">Hello</div>
         <form class="form-signin" id="profileForm">
           <h2 class="form-signin-heading">Create/Update Your Profile</h2>
           <label for="inputGivenName" class="sr-only">First Name</label>
@@ -117,8 +118,39 @@
 
       </div> <!-- /profile -->
 
-      <label for="result">Result</label>
-      <textarea id="result"></textarea>
+      <div class="questionview">
+        <h1>Questions</h1>
+          <ul id='questions'>
+          </ul>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Topic</th>
+              </tr>
+            </thead>
+
+            <tbody id='allQuestions'>
+              <script id="questions-index" type="text/x-handlebars-template">
+              <div>
+                {{#each questions}}
+                <tr>
+                  <th></th>
+                  <th>{{topic}}</th>
+                </tr>
+                {{/each}}
+                </div>
+              </script>
+            </tbody>
+
+          </table>
+
+
+      </div> <!-- /questionview -->
+
+      <label for="result">Back-end Output</label>
+      <p id="result"></p>
 
     </div> <!-- /container -->
 
@@ -128,6 +160,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="assets/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
     <script src="api.js"></script>
     <script src="display.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

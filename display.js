@@ -41,6 +41,7 @@ $(document).ready(function(){
     visual.clear();
     $('.profile').css('display','block');
     $('#profilebuttonli').addClass('active');
+    profileExist();
   });
 
 });

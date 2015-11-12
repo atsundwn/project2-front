@@ -53,8 +53,8 @@ body {
 button {
   margin-top: 5px;
 }
-#result {
-  height: 30ex;
-  width: 50%;
-  margin: 0 auto;
+#myProfile {
+  text-align: center;
+  width: 400px;
+  height: 40px;
 }
