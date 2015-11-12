@@ -3,6 +3,7 @@ var cofapi = {
   cof: 'http://localhost:3000',
   id: null,
   token: '',
+  email: null,
   profile: null,
 
   ajax: function(config, cb) {
@@ -115,14 +116,12 @@ var form2object = function(form) {
       data[$(this).attr('name')] = $(this).val();
     }
   });
-  console.log(data);
   return data;
 };
 
 var wrap = function wrap(root, formData) {
   var wrapper = {};
   wrapper[root] = formData;
-  console.log(wrapper);
   return wrapper;
 };
 
@@ -173,6 +172,7 @@ $(document).ready(function(){
       callback(null, data);
       cofapi.token = data.user.token;
       cofapi.id = data.user.id;
+      cofapi.email = data.user.email;
     };
     e.preventDefault();
     cofapi.login(credentials, cb);
