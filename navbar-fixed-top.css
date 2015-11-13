@@ -1,5 +1,4 @@
 body {
-  min-height: 2000px;
   padding-top: 70px;
 }
 
@@ -57,4 +56,7 @@ button {
   text-align: center;
   width: 400px;
   height: 40px;
+}
+#inputTopic {
+  width: 40em;
 }

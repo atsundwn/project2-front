@@ -48,24 +48,10 @@
             <li class="navbutton" id="registerbuttonli"><a href="#register" id="registerbutton">Register</a></li>
             <li class="navbutton" id="loginbuttonli"><a href="#login" id="loginbutton">Login</a></li>
             <li class="navbutton" id="logoutbuttonli"><a href="#logout" id="logoutbutton">Logout</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="navbutton" id="profilebuttonli"><a href="#profile" id="profilebutton">My Profile</a></li>
             <li class="navbutton" id="fistbuttonli"><a href="#fists" id="fistbutton">My Fists</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -104,15 +90,14 @@
 
       <div class="profile">
 
-        <div id="myProfile">Hello</div>
         <form class="form-signin" id="profileForm">
           <h2 class="form-signin-heading">Create/Update Your Profile</h2>
           <label for="inputGivenName" class="sr-only">First Name</label>
-          <input name="given_name" type="text" id="inputGivenName" class="form-control" placeholder="First Name" required autofocus>
+          <input name="given_name" type="text" id="inputGivenName" class="form-control" placeholder="First Name" autofocus>
           <label for="inputSurname" class="sr-only">Last Name</label>
-          <input name="surname" type="text" id="inputSurname" class="form-control" placeholder="Last Name" required>
+          <input name="surname" type="text" id="inputSurname" class="form-control" placeholder="Last Name">
           <label for="inputGroup" class="sr-only">Group</label>
-          <input name="group" type="text" id="inputGroup" class="form-control" placeholder="Group Name" required>
+          <input name="group" type="text" id="inputGroup" class="form-control" placeholder="Group Name">
           <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         </form>
 
@@ -121,11 +106,28 @@
       <div class="questionview">
         <h1>Questions</h1>
 
+          <div id='questionInput'>
+            <form id="questionForm">
+              <label>Question</label>
+              <input name="topic" type="text" id="inputTopic" placeholder="Question" required>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+
+          <div id='questionDeleteInput'>
+            <form id="questionDeleteForm">
+              <label>Question to delete</label>
+              <input name="id" type="text" id="deleteQuestion" placeholder="ID of Question" required>
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Rate</th>
-                <th>Topic</th>
+                <th>ID</th>
+                <th>Question</th>
                 <th>Result</th>
               </tr>
             </thead>
@@ -136,6 +138,7 @@
                   {{#each questions}}
                   <tr>
                     <td><button type="button" class="btn btn-success">Rate</button></td>
+                    <td>{{id}}</td>
                     <td>{{topic}}</td>
                     <td><button type="button" class="btn btn-success">Result</button></td>
                   </tr>

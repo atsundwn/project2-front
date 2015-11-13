@@ -27,6 +27,7 @@ $(document).ready(function(){
     visual.clear();
     $('.login').css('display','block');
     $('#loginbuttonli').addClass('active');
+    $('.questionview').show();
   });
 
   $('#logoutbutton').on('click', function(){
@@ -50,6 +51,7 @@ $(document).ready(function(){
   $('#fistbutton').on('click', function(){
     visual.clear();
     $('.myfistview').show();
+    $('.questionview').show();
   });
 
 });

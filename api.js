@@ -1,6 +1,6 @@
 'use strict';
 var cofapi = {
-  cof: 'http://localhost:3000',
+  cof: 'https://radiant-garden-9287.herokuapp.com',
   id: null,
   token: '',
   email: null,
@@ -128,6 +128,17 @@ var cofapi = {
     }, callback);
   },
 
+  destroyQuestion: function (id, token, callback) {
+    this.ajax({
+      method: 'DELETE',
+      url: this.cof + '/questions/' + id,
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      dataType: 'json'
+    }, callback);
+  },
+
   createFist: function (data, token, callback) {
     this.ajax({
       method: 'POST',
@@ -152,6 +163,8 @@ var cofapi = {
     }, callback);
   }
 };
+
+// Some Useful functions to use multiple times
 
 var form2object = function(form) {
   var data = {};
@@ -194,23 +207,28 @@ var profileExist = function profileExist() {
   });
 };
 
+// Button handlers
 
 $(document).ready(function(){
 
   var questionIndexTemplate = Handlebars.compile($("#questions-index").html());
+  var fistIndexTemplate = Handlebars.compile($("#fists-index").html());
 
-  $.ajax({
-    method: 'GET',
-    url: cofapi.cof + "/questions"
-  }).done(function(data){
-    var questionHTML = questionIndexTemplate({questions: data.questions});
-    $("#allQuestions").html(questionHTML);
-  }).fail(function(data){
-    console.error(data);
-  });
+  var questionGet = function () {
+    $.ajax({
+      method: 'GET',
+      url: cofapi.cof + "/questions"
+    }).done(function(data){
+      var questionHTML = questionIndexTemplate({questions: data.questions});
+      $("#allQuestions").html(questionHTML);
+    }).fail(function(data){
+      console.error(data);
+    });
+  };
+
+  questionGet();
 
   $('#fistbutton').on('click', function() {
-    var fistIndexTemplate = Handlebars.compile($("#fists-index").html());
     var query = '?profile_id=' + cofapi.id;
 
     $.ajax({
@@ -224,7 +242,37 @@ $(document).ready(function(){
     });
   });
 
+  $('#questionForm').on('submit', function(e) {
+    var token = cofapi.token;
+    var data = wrap('question', form2object(this));
+    var cb = function cb(error, data) {
+      if (error) {
+        callback(error);
+        return;
+      }
+      questionGet();
+      callback(null, data);
+    };
+    e.preventDefault();
+    $('#questionForm').children('input').val('');
+    cofapi.createQuestion(data, token, cb);
+  });
 
+  $('#questionDeleteForm').on('submit', function(e) {
+    var token = cofapi.token;
+    var id = $('#deleteQuestion').val();
+    var cb = function cb(error, data) {
+      if (error) {
+        callback(error);
+        return;
+      }
+      questionGet();
+      callback(null, data);
+    };
+    e.preventDefault();
+    $('#questionForm').children('input').val('');
+    cofapi.destroyQuestion(id, token, cb);
+  });
 
 
   $('#registerForm').on('submit', function(e) {
