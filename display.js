@@ -51,7 +51,11 @@ $(document).ready(function(){
   $('#fistbutton').on('click', function(){
     visual.clear();
     $('.myfistview').show();
-    $('.questionview').show();
+  });
+
+  $('#questionbutton').on('click', function(){
+    visual.clear();
+    $('.myquestionview').show();
   });
 
 });

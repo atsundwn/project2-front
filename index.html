@@ -51,6 +51,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="navbutton" id="profilebuttonli"><a href="#profile" id="profilebutton">My Profile</a></li>
+            <li class="navbutton" id="questionbuttonli"><a href="#questions" id="questionbutton">My Questions</a></li>
             <li class="navbutton" id="fistbuttonli"><a href="#fists" id="fistbutton">My Fists</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -104,7 +105,7 @@
       </div> <!-- /profile -->
 
       <div class="questionview">
-        <h1>Questions</h1>
+        <h1>All Questions</h1>
 
           <div id='questionInput'>
             <form id="questionForm">
@@ -137,12 +138,12 @@
                 <div>
                   {{#each questions}}
                   <tr>
-                    <td><button type="button" class="btn btn-success">Rate</button></td>
+                    <td><button data-question-id={{id}} type="button" class="btn btn-success">Rate</button></td>
                     <td>{{id}}</td>
                     <td>{{topic}}</td>
-                    <td><button type="button" class="btn btn-success">Result</button></td>
+                    <td><button data-question-id={{id}} type="button" class="btn btn-success">Result</button></td>
                   </tr>
-                {{/each}}
+                  {{/each}}
                 </div>
               </script>
             </tbody>
@@ -165,7 +166,6 @@
 
             <tbody id='myFists'>
               <script id="fists-index" type="text/x-handlebars-template">
-              <div>
                 {{#each fists}}
                 <tr>
                   <td><button type="button" class="btn btn-success">Delete</button></td>
@@ -174,7 +174,6 @@
                   <td><button type="button" class="btn btn-success">Result</button></td>
                 </tr>
                 {{/each}}
-                </div>
               </script>
             </tbody>
 
@@ -195,6 +194,7 @@
     <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
     <script src="api.js"></script>
     <script src="display.js"></script>
+    <script src="app.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/ie10-viewport-bug-workaround.js"></script>
   </body>

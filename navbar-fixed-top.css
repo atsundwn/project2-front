@@ -8,7 +8,7 @@ body {
   background-color: #eee;
   display: none;
 }
-#profilebutton, #fistbutton {
+#profilebutton, #questionbutton, #fistbutton {
   display: none;
 }
 .form-signin {
