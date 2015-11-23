@@ -2,7 +2,7 @@ body {
   padding-top: 70px;
 }
 
-.register, .login, .profile, .myfistview, .resultview, .myquestionview, .profileview {
+.register, .login, .profile, .myfistview, .resultview, .myquestionview, .profileview, .logout {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;

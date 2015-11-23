@@ -115,17 +115,13 @@ $(document).ready(function() {
       method: 'GET',
       url: cofapi.cof + "/fists" + query
     }).done(function(data){
-      // var fistHTML = fistIndexTemplate({fists: data.fists});
-      // $("#myFists").html(fistHTML);
       $('#result').text(JSON.stringify(data, null, 4));
-      console.log(data);
       $('#five').text(data['5']);
       $('#four').text(data['4']);
       $('#three').text(data['3']);
       $('#two').text(data['2']);
       $('#one').text(data['1']);
       visual.result();
-
     }).fail(function(){
       console.error(data);
     });
@@ -145,7 +141,7 @@ $(document).ready(function() {
       cofapi.destroyQuestion(id, token, function (error, data) {
         if (error) {
           console.error(error);
-          $('#result').val('status: ' + error.status + ', error: ' +error.error);
+          $('#result').val('status: ' + error.status + ', error: ' + error.error);
           return;
         }
         $('#result').text(JSON.stringify(data, null, 4));
@@ -209,6 +205,7 @@ $(document).ready(function() {
       cofapi.token = data.user.token;
       cofapi.id = data.user.id;
       cofapi.email = data.user.email;
+      $('#profilebutton').text(data.user.email);
     };
     e.preventDefault();
     cofapi.login(credentials, cb);

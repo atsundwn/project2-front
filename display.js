@@ -10,6 +10,7 @@ var visual = {
     $('.resultview').css('display','none');
     $('.myquestionview').css('display','none');
     $('.profileview').css('display','none');
+    $('.logout').css('display','none');
   },
 
   home: function () {
@@ -37,6 +38,7 @@ var visual = {
 
   logout: function () {
     visual.clear();
+    $('.logout').show();
     $('#logoutbuttonli').addClass('active');
     $('#profilebutton').css('display','none');
     $('#fistbutton').css('display','none');
