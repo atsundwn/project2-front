@@ -50,6 +50,7 @@ $(document).ready(function() {
 
   var questionIndexTemplate = Handlebars.compile($("#questions-index").html());
   var fistIndexTemplate = Handlebars.compile($("#fists-index").html());
+  var myQuestionIndexTemplate = Handlebars.compile($("#myquestions-index").html());
 
   var questionGet = function () {
     $.ajax({
@@ -64,6 +65,20 @@ $(document).ready(function() {
   };
 
   questionGet();
+
+  var myQuestionsGet = function() {
+    var query = '?profile_id=' + cofapi.id;
+
+    $.ajax({
+      method: 'GET',
+      url: cofapi.cof + "/questions" + query
+    }).done(function(data){
+      var myQuestionHTML = myQuestionIndexTemplate({questions: data.questions});
+      $("#myQuestions").html(myQuestionHTML);
+    }).fail(function(data){
+      console.error(data);
+    });
+  };
 
   var myFistsGet = function() {
     var query = '?profile_id=' + cofapi.id;
@@ -103,10 +118,11 @@ $(document).ready(function() {
     });
   };
 
-
   $('#fistbutton').on('click', myFistsGet);
 
-  $("#allQuestions").on('click', resultGet);
+  $('#questionbutton').on('click', myQuestionsGet);
+
+  $('#allQuestions').on('click', resultGet);
 
   $('#questionForm').on('submit', function(e) {
     var token = cofapi.token;

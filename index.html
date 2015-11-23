@@ -151,13 +151,43 @@
           </table>
       </div> <!-- /questionview -->
 
+      <div class="myquestionview">
+        <h1>My Questions</h1>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Delete</th>
+                <th>ID</th>
+                <th>Topic</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+
+            <tbody id='myQuestions'>
+              <script id="myquestions-index" type="text/x-handlebars-template">
+                {{#each questions}}
+                <tr>
+                  <td><button data-question-id={{id}} data-profile-id={{profile_id}} data-button="delete" type="button" class="btn btn-success">Delete</button></td>
+                  <td>{{id}}</td>
+                  <td>{{topic}}</td>
+                  <td><button data-question-id={{id}} data-profile-id={{question_id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
+                </tr>
+                {{/each}}
+              </script>
+            </tbody>
+
+          </table>
+
+      </div> <!-- /myquestionview -->
+
       <div class="myfistview">
         <h1>My Fists</h1>
 
         <table class="table table-striped">
             <thead>
               <tr>
-                <th>Button</th>
+                <th>Delete</th>
                 <th>Fist of Five</th>
                 <th>Question ID</th>
                 <th>Result</th>

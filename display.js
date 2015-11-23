@@ -8,6 +8,7 @@ var visual = {
     $('.myfistview').css('display','none');
     $('.questionview').css('display','none');
     $('.resultview').css('display','none');
+    $('.myquestionview').css('display','none');
   },
 
   home: function () {
