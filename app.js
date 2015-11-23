@@ -240,10 +240,11 @@ $(document).ready(function() {
     if (cofapi.profile === true) {
       cofapi.updateProfile(id, data, token, cb);
       visual.home();
-
+      cofapi.profile = true;
     } else if (cofapi.profile === false) {
       cofapi.createProfile(data, token, cb);
       visual.home();
+      cofapi.profile = true;
     } else {
       console.log('Didn\'t Work');
       return;
