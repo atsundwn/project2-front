@@ -1,61 +1,81 @@
+'use strict';
 var visual = {
   clear: function () {
-  $('.navbutton').removeClass('active');
-  $('.register').css('display','none');
-  $('.login').css('display','none');
-  $('.profile').css('display','none');
-  $('.myfistview').css('display','none');
-  $('.questionview').css('display','none');
-  }
-};
+    $('.navbutton').removeClass('active');
+    $('.register').css('display','none');
+    $('.login').css('display','none');
+    $('.profile').css('display','none');
+    $('.myfistview').css('display','none');
+    $('.questionview').css('display','none');
+    $('.resultview').css('display','none');
+  },
 
-$(document).ready(function(){
-
-  $('#homeButton').on('click', function(){
+  home: function () {
     visual.clear();
     $('#homebuttonli').addClass('active');
     $('.questionview').show();
-  });
+  },
 
-  $('#registerbutton').on('click', function(){
+  result: function () {
+    visual.clear();
+    $('.resultview').show();
+  },
+
+  register: function () {
     visual.clear();
     $('.register').css('display','block');
     $('#registerbuttonli').addClass('active');
-  });
+  },
 
-  $('#loginbutton').on('click', function(){
+  login: function () {
     visual.clear();
     $('.login').css('display','block');
     $('#loginbuttonli').addClass('active');
-    $('.questionview').show();
-  });
+  },
 
-  $('#logoutbutton').on('click', function(){
+  logout: function () {
     visual.clear();
     $('#logoutbuttonli').addClass('active');
-  });
+    $('#profilebutton').css('display','none');
+    $('#fistbutton').css('display','none');
+    $('#questionbutton').css('display', 'none');
+  },
 
-  $('#loginHere').on('click', function(){
-    visual.clear();
-    $('.login').css('display','block');
-    $('#loginbuttonli').addClass('active');
-  });
-
-  $('#profilebutton').on('click', function(){
+  profileform: function () {
     visual.clear();
     $('.profile').css('display','block');
     $('#profilebuttonli').addClass('active');
     profileExist();
-  });
+  },
 
-  $('#fistbutton').on('click', function(){
+  myfists: function () {
     visual.clear();
     $('.myfistview').show();
-  });
+    $('#fistbuttonli').addClass('active');
+  },
 
-  $('#questionbutton').on('click', function(){
+  myquestions: function () {
     visual.clear();
     $('.myquestionview').show();
-  });
+    $('#questionbuttonli').addClass('active');
+  }
+};
 
+$(document).ready(function () {
+
+  $('#homeButton').on('click', visual.home);
+
+  $('#registerbutton').on('click', visual.register);
+
+  $('#loginbutton').on('click', visual.login);
+
+  $('#logoutbutton').on('click', visual.logout);
+
+  $('#loginHere').on('click', visual.login); //register screen
+
+  $('#profilebutton').on('click', visual.profileform);
+
+  $('#fistbutton').on('click', visual.myfists);
+
+  $('#questionbutton').on('click', visual.myquestions);
 });

@@ -2,13 +2,13 @@ body {
   padding-top: 70px;
 }
 
-.register, .login, .profile, .myfistview {
+.register, .login, .profile, .myfistview, .resultview {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
   display: none;
 }
-#profilebutton, #questionbutton, #fistbutton {
+#profilebutton, #questionbutton, #fistbutton, #questionInput, #questionDeleteInput {
   display: none;
 }
 .form-signin {

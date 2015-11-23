@@ -138,10 +138,10 @@
                 <div>
                   {{#each questions}}
                   <tr>
-                    <td><button data-question-id={{id}} type="button" class="btn btn-success">Rate</button></td>
+                    <td><button data-question-id={{id}} data-button="rate" type="button" class="btn btn-success">Rate</button></td>
                     <td>{{id}}</td>
                     <td>{{topic}}</td>
-                    <td><button data-question-id={{id}} type="button" class="btn btn-success">Result</button></td>
+                    <td><button data-question-id={{id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
                   </tr>
                   {{/each}}
                 </div>
@@ -168,10 +168,10 @@
               <script id="fists-index" type="text/x-handlebars-template">
                 {{#each fists}}
                 <tr>
-                  <td><button type="button" class="btn btn-success">Delete</button></td>
+                  <td><button data-fist-id={{id}} data-question-id={{question_id}} data-button="delete" type="button" class="btn btn-success">Delete</button></td>
                   <td>{{value}}</td>
                   <td>{{question_id}}</td>
-                  <td><button type="button" class="btn btn-success">Result</button></td>
+                  <td><button data-fist-id={{id}} data-question-id={{question_id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
                 </tr>
                 {{/each}}
               </script>
@@ -179,6 +179,44 @@
 
           </table>
       </div> <!-- /myfistview -->
+
+      <div class="resultview">
+        <h1>Result</h1>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Value</th>
+                <th>Count</th>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td id="five">0</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td id="four">0</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td id="three">0</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td id="two">0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td id="one">0</td>
+              </tr>
+            </thead>
+
+          </table>
+
+          <p id="resultView"></p>
+
+
+      </div> <!-- /resultview -->
 
       <label for="result">Back-end Output</label>
       <p id="result"></p>

@@ -1,3 +1,4 @@
+'use strict';
 // Some Useful functions to use multiple times
 
 var form2object = function(form) {
@@ -41,9 +42,11 @@ var profileExist = function profileExist() {
   });
 };
 
+
+
 // Button handlers
 
-$(document).ready(function(){
+$(document).ready(function() {
 
   var questionIndexTemplate = Handlebars.compile($("#questions-index").html());
   var fistIndexTemplate = Handlebars.compile($("#fists-index").html());
@@ -62,7 +65,7 @@ $(document).ready(function(){
 
   questionGet();
 
-  $('#fistbutton').on('click', function() {
+  var myFistsGet = function() {
     var query = '?profile_id=' + cofapi.id;
 
     $.ajax({
@@ -74,7 +77,36 @@ $(document).ready(function(){
     }).fail(function(data){
       console.error(data);
     });
-  });
+  };
+
+  var resultGet = function() {
+    var id = $(event.target).data('question-id');
+    var query = '?question_id=' + id;
+
+    $.ajax({
+      method: 'GET',
+      url: cofapi.cof + "/fists" + query
+    }).done(function(data){
+      // var fistHTML = fistIndexTemplate({fists: data.fists});
+      // $("#myFists").html(fistHTML);
+      $('#result').text(JSON.stringify(data, null, 4));
+      console.log(data);
+      $('#five').text(data['5']);
+      $('#four').text(data['4']);
+      $('#three').text(data['3']);
+      $('#two').text(data['2']);
+      $('#one').text(data['1']);
+      visual.result();
+
+    }).fail(function(){
+      console.error(data);
+    });
+  };
+
+
+  $('#fistbutton').on('click', myFistsGet);
+
+  $("#allQuestions").on('click', resultGet);
 
   $('#questionForm').on('submit', function(e) {
     var token = cofapi.token;
@@ -108,7 +140,6 @@ $(document).ready(function(){
     cofapi.destroyQuestion(id, token, cb);
   });
 
-
   $('#registerForm').on('submit', function(e) {
     var credentials = wrap('credentials', form2object(this));
     cofapi.register(credentials, callback);
@@ -132,11 +163,18 @@ $(document).ready(function(){
     };
     e.preventDefault();
     cofapi.login(credentials, cb);
-    $('.login').css('display','none');
     $('#loginForm').children('input').val('');
+    visual.home();
     $('#profilebutton').css('display','block');
     $('#fistbutton').css('display','block');
     $('#questionbutton').css('display', 'block');
+    $('#questionInput').show();
+    setTimeout(profileExist, 1000);
+    setTimeout(function() {
+      if (cofapi.profile === false) {
+        $('.profile').show();
+      }
+    }, 1500);
   });
 
   $('#profileForm').on('submit', function(e) {
@@ -155,8 +193,11 @@ $(document).ready(function(){
     $('.profile').css('display','none');
     if (cofapi.profile === true) {
       cofapi.updateProfile(id, data, token, cb);
+      visual.home();
+
     } else if (cofapi.profile === false) {
       cofapi.createProfile(data, token, cb);
+      visual.home();
     } else {
       console.log('Didn\'t Work');
       return;
@@ -170,29 +211,32 @@ $(document).ready(function(){
     console.log('Successfully logged out');
   });
 
-
-
-
-  $("#allQuestions").on('click', function(event){
-    var buttonClicked = $(event.target);
-    // HTML 5 gives all element the ability to store data on them
-    // need <p data-foo="hello"></p>
-    // elementForP.data('foo') // return the string "hello"
-    var idClicked = buttonClicked.data('id');
-    console.log(idClicked);
-    console.log("You clicked on id "+ idClicked);
-
-    var newRequest = {
-        borrow_request: {
-        book_id: idClicked,
-        user_id: cUser.user.id
-        //date: Date.now
-      }
-    };
-
-    api.requestBook(cUser.user.token, newRequest, bookFuncs.newRequestCB);
-    //$(event.target).attr("class").text("btn btn-warning");
-    $('*[data-delete-id=idClicked]').html("requested");
-    event.preventDefault();
+  $('#myFists').on('click', function() {
+    var id = $(event.target).data('fist-id');
+    var button = $(event.target).data('button');
+    var token = cofapi.token;
+    if (button === 'delete') {
+      cofapi.destroyFist(id, token, function (error, data) {
+        if (error) {
+          console.error(error);
+          $('#result').val('status: ' + error.status + ', error: ' +error.error);
+          return;
+        }
+        $('#result').text(JSON.stringify(data, null, 4));
+        myFistsGet();
+      });
+      console.log('Fist deleted');
+    } else if (button === 'result') {
+      resultGet();
+    }
   });
+
+
+
+
+
+
+
+
+
 });
