@@ -42,8 +42,6 @@ var profileExist = function profileExist() {
   });
 };
 
-
-
 // Button handlers
 
 $(document).ready(function() {
@@ -51,6 +49,7 @@ $(document).ready(function() {
   var questionIndexTemplate = Handlebars.compile($("#questions-index").html());
   var fistIndexTemplate = Handlebars.compile($("#fists-index").html());
   var myQuestionIndexTemplate = Handlebars.compile($("#myquestions-index").html());
+  var userprofileIndexTemplate = Handlebars.compile($("#userprofile-index").html());
 
   var questionGet = function () {
     $.ajax({
@@ -65,6 +64,20 @@ $(document).ready(function() {
   };
 
   questionGet();
+
+  var userProfileGet = function () {
+    var query = '?user_id=' + cofapi.id;
+
+    $.ajax({
+      method: 'GET',
+      url: cofapi.cof + "/profiles" + query
+    }).done(function(data){
+      var userProfileHTML = userprofileIndexTemplate({profiles: data.profiles});
+      $("#userprofile").html(userProfileHTML);
+    }).fail(function(data){
+      console.error(data);
+    });
+  };
 
   var myQuestionsGet = function() {
     var query = '?profile_id=' + cofapi.id;
@@ -123,6 +136,26 @@ $(document).ready(function() {
   $('#questionbutton').on('click', myQuestionsGet);
 
   $('#allQuestions').on('click', resultGet);
+
+  $('#myQuestions').on('click', function () {
+    var id = $(event.target).data('question-id');
+    var button = $(event.target).data('button');
+    var token = cofapi.token;
+    if (button === 'delete') {
+      cofapi.destroyQuestion(id, token, function (error, data) {
+        if (error) {
+          console.error(error);
+          $('#result').val('status: ' + error.status + ', error: ' +error.error);
+          return;
+        }
+        $('#result').text(JSON.stringify(data, null, 4));
+        myQuestionsGet();
+      });
+      console.log('Question deleted');
+    } else if (button === 'result') {
+      resultGet();
+    }
+  });
 
   $('#questionForm').on('submit', function(e) {
     var token = cofapi.token;
@@ -244,6 +277,16 @@ $(document).ready(function() {
       console.log('Fist deleted');
     } else if (button === 'result') {
       resultGet();
+    }
+  });
+
+  $('#profilebutton').on('click', function () {
+    if (cofapi.profile === true) {
+      visual.profileform();
+      $('.profileview').show();
+      userProfileGet();
+    } else {
+      visual.profileform();
     }
   });
 

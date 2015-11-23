@@ -89,6 +89,36 @@
 
       </div> <!-- /login -->
 
+      <div class="profileview">
+        <h1>My Profile</h1>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Group</th>
+              </tr>
+            </thead>
+
+            <tbody id='userprofile'>
+              <script id="userprofile-index" type="text/x-handlebars-template">
+                <div>
+                  {{#each profiles}}
+                  <tr>
+                    <td>{{given_name}}</td>
+                    <td>{{surname}}</td>
+                    <td>{{group}}</td>
+                  </tr>
+                  {{/each}}
+                </div>
+              </script>
+            </tbody>
+
+          </table>
+
+      </div> <!-- /profileview -->
+
       <div class="profile">
 
         <form class="form-signin" id="profileForm">
@@ -171,7 +201,7 @@
                   <td><button data-question-id={{id}} data-profile-id={{profile_id}} data-button="delete" type="button" class="btn btn-success">Delete</button></td>
                   <td>{{id}}</td>
                   <td>{{topic}}</td>
-                  <td><button data-question-id={{id}} data-profile-id={{question_id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
+                  <td><button data-question-id={{id}} data-profile-id={{profile_id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
                 </tr>
                 {{/each}}
               </script>

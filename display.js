@@ -9,6 +9,7 @@ var visual = {
     $('.questionview').css('display','none');
     $('.resultview').css('display','none');
     $('.myquestionview').css('display','none');
+    $('.profileview').css('display','none');
   },
 
   home: function () {
@@ -73,8 +74,6 @@ $(document).ready(function () {
   $('#logoutbutton').on('click', visual.logout);
 
   $('#loginHere').on('click', visual.login); //register screen
-
-  $('#profilebutton').on('click', visual.profileform);
 
   $('#fistbutton').on('click', visual.myfists);
 
