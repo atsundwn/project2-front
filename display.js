@@ -15,10 +15,15 @@ var visual = {
   },
 
   home: function () {
-    resultGet();
     visual.clear();
     $('#homebuttonli').addClass('active');
     $('.questionview').show();
+    if (cofapi.token !== "") {
+      $('#questionInput').show();
+      $('#profilebutton').css('display','block');
+      $('#fistbutton').css('display','block');
+      $('#questionbutton').css('display','block');
+    }
   },
 
   result: function () {

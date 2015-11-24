@@ -131,40 +131,42 @@ $(document).ready(function() {
 
   $('#questionbutton').on('click', myQuestionsGet);
 
+  var questionId;
+
   $('#allQuestions').on('click', function () {
     var button = $(event.target).data('button');
-    var questionId = $(event.target).data('question-id');
-    var profileId = cofapi.id;
     var token = cofapi.token;
 
     if (button === 'rate' && cofapi.token !== "") {
       $('#rateMsg').text('Rate');
       $('.rateButton').show();
       visual.rate();
-
-      $('.rateButton').on('click', function () {
-        var value = $(event.target).data('val');
-        var data = {
-                        "fist":{
-                            "value": value,
-                            "profile_id": profileId,
-                            "question_id": questionId
-                        }
-                    };
-        cofapi.createFist(data, token, callback);
-        $('#rateMsg').text('Submitted');
-        $('.rateButton').hide();
-        setTimeout(visual.home, 1500);
-      });
+      questionId = $(event.target).data('question-id');
     } else if (button === 'rate' && cofapi.token === "") {
       $('#rateMsg').text('Please Login First');
       $('.rateButton').hide();
       visual.rate();
-
+      setTimeout(visual.home, 1500);
     }
     if (button === 'result') {
       resultGet();
     }
+  });
+
+  $('.rateButton').on('click', function () {
+    var profileId = cofapi.id;
+    var value = $(event.target).data('val');
+    var token = cofapi.token;
+    var data = { "fist": {
+                          "value": value,
+                          "profile_id": profileId,
+                          "question_id": questionId
+                          }};
+    cofapi.createFist(data, token, callback);
+    questionGet();
+    $('#rateMsg').text('Submitted');
+    $('.rateButton').hide();
+    setTimeout(visual.home, 1500);
   });
 
   $('#myQuestions').on('click', function () {
@@ -180,6 +182,7 @@ $(document).ready(function() {
         }
         $('#result').text(JSON.stringify(data, null, 4));
         myQuestionsGet();
+        questionGet();
       });
       console.log('Question deleted');
     } else if (button === 'result') {
@@ -244,14 +247,10 @@ $(document).ready(function() {
     e.preventDefault();
     cofapi.login(credentials, cb);
     $('#loginForm').children('input').val('');
-    visual.home();
-    $('#profilebutton').css('display','block');
-    $('#fistbutton').css('display','block');
-    $('#questionbutton').css('display', 'block');
-    $('#questionInput').show();
+    setTimeout(visual.home, 900);
     setTimeout(profileExist, 1000);
     setTimeout(function() {
-      if (cofapi.profile === false) {
+      if (cofapi.profile === false && cofapi.token !== "") {
         $('.profile').show();
       }
     }, 1500);
@@ -289,8 +288,14 @@ $(document).ready(function() {
     var id = cofapi.id;
     var token = cofapi.token;
     cofapi.logout(id, token, callback);
-    $('#questionInput').hide();
-    console.log('Successfully logged out');
+    $('#profilebutton').text('My Profile');
+    console.log('logged out');
+    setTimeout(function () {
+      cofapi.id = null;
+      cofapi.token = '';
+      cofapi.email = null;
+      cofapi.profile = null;
+    }, 500);
   });
 
   $('#myFists').on('click', function() {
@@ -322,8 +327,4 @@ $(document).ready(function() {
       visual.profileform();
     }
   });
-
-
-
-
 });
