@@ -2,7 +2,7 @@ body {
   padding-top: 70px;
 }
 
-.register, .login, .profile, .myfistview, .resultview, .myquestionview, .profileview, .logout {
+.register, .login, .profile, .myfistview, .resultview, .myquestionview, .profileview, .logout, .rate {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
@@ -59,4 +59,16 @@ button {
 }
 #inputTopic {
   width: 40em;
+}
+.container {
+  position: relative;
+}
+.rate {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 500px;
+  height: 200px;
+  text-align: center;
+  border-radius: 20px;
 }

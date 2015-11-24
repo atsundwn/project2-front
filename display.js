@@ -11,6 +11,7 @@ var visual = {
     $('.myquestionview').css('display','none');
     $('.profileview').css('display','none');
     $('.logout').css('display','none');
+    $('.rate').css('display','none');
   },
 
   home: function () {
@@ -62,6 +63,12 @@ var visual = {
     visual.clear();
     $('.myquestionview').show();
     $('#questionbuttonli').addClass('active');
+  },
+
+  rate: function () {
+    visual.clear();
+    $('.rate').show();
+    $('.questionview').show();
   }
 };
 
