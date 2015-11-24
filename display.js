@@ -15,6 +15,7 @@ var visual = {
   },
 
   home: function () {
+    resultGet();
     visual.clear();
     $('#homebuttonli').addClass('active');
     $('.questionview').show();
