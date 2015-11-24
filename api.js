@@ -1,6 +1,7 @@
 'use strict';
 var cofapi = {
-  cof: 'http://localhost:3000',
+  // cof: 'http://localhost:3000',
+  cof: 'https://shielded-hollows-9246.herokuapp.com',
   id: null,
   token: '',
   email: null,
