@@ -305,6 +305,7 @@ $(document).ready(function() {
     var token = cofapi.token;
     cofapi.logout(id, token, callback);
     $('#profilebutton').text('My Profile');
+    $('#questionInput').hide();
     console.log('logged out');
     setTimeout(function () {
       cofapi.id = null;
