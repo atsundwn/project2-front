@@ -97,3 +97,6 @@ button {
 .table {
   text-align: center;
 }
+#cancelbutton {
+  margin-top: 20px;
+}
