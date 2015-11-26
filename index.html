@@ -192,7 +192,6 @@
             <thead>
               <tr>
                 <th>Delete</th>
-                <th>ID</th>
                 <th>Topic</th>
                 <th>Result</th>
               </tr>
@@ -203,7 +202,6 @@
                 {{#each questions}}
                 <tr>
                   <td><button data-question-id={{id}} data-profile-id={{profile_id}} data-button="delete" type="button" class="btn btn-success">Delete</button></td>
-                  <td>{{id}}</td>
                   <td>{{topic}}</td>
                   <td><button data-question-id={{id}} data-profile-id={{profile_id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
                 </tr>
