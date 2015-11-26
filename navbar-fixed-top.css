@@ -1,12 +1,18 @@
 body {
   padding-top: 70px;
+  background-image: url('assets/classroom.jpg');
+  background-repeat: no-repeat;
 }
 
 .register, .login, .profile, .myfistview, .resultview, .myquestionview, .profileview, .logout, .rate {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: #F5F5DC;
+  opacity: 0.7;
   display: none;
+}
+.rate {
+  opacity: 1.0;
 }
 #profilebutton, #questionbutton, #fistbutton, #questionInput, #questionDeleteInput {
   display: none;
@@ -71,4 +77,8 @@ button {
   height: 200px;
   text-align: center;
   border-radius: 20px;
+}
+.questionview {
+  background-color: #F5F5DC;
+  opacity: 0.7;
 }
