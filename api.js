@@ -1,7 +1,7 @@
 'use strict';
 var cofapi = {
-  // cof: 'http://localhost:3000',
-  cof: 'https://shielded-hollows-9246.herokuapp.com',
+  cof: 'http://localhost:3000',
+  // cof: 'https://shielded-hollows-9246.herokuapp.com',
   id: null,
   token: '',
   email: null,
@@ -39,6 +39,14 @@ var cofapi = {
     this.ajax({
       method: 'GET',
       url: this.cof + '/questions',
+      dataType: 'json'
+    }, callback);
+  },
+
+  getQuestion: function getQuestion(id, callback) {
+    this.ajax({
+      method: 'GET',
+      url: this.cof + '/questions' + id,
       dataType: 'json'
     }, callback);
   },

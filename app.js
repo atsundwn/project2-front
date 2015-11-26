@@ -113,6 +113,16 @@ $(document).ready(function() {
 
     $.ajax({
       method: 'GET',
+      url: cofapi.cof + "/questions/" + id
+    }).done(function (data) {
+      $('#resultQuestion').text(data.topic);
+      visual.result();
+    }).fail(function (data) {
+      console.error(data);
+    });
+
+    $.ajax({
+      method: 'GET',
       url: cofapi.cof + "/fists" + query
     }).done(function(data){
       $('#result').text(JSON.stringify(data, null, 4));

@@ -223,7 +223,7 @@
               <tr>
                 <th>Delete</th>
                 <th>Fist of Five</th>
-                <th>Question ID</th>
+                <th>Question</th>
                 <th>Result</th>
               </tr>
             </thead>
@@ -234,7 +234,7 @@
                 <tr>
                   <td><button data-fist-id={{id}} data-question-id={{question_id}} data-button="delete" type="button" class="btn btn-success">Delete</button></td>
                   <td>{{value}}</td>
-                  <td>{{question_id}}</td>
+                  <td>{{topic}}</td>
                   <td><button data-fist-id={{id}} data-question-id={{question_id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
                 </tr>
                 {{/each}}
@@ -245,7 +245,8 @@
       </div> <!-- /myfistview -->
 
       <div class="resultview">
-        <h1>Result</h1>
+        <h1>Results for Question:</h1>
+          <h3 id="resultQuestion">Question</h3>
 
           <table class="table table-striped">
             <thead>
