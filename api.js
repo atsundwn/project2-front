@@ -35,30 +35,6 @@ var cofapi = {
     }, callback);
   },
 
-  listQuestions: function listQuestions(callback) {
-    this.ajax({
-      method: 'GET',
-      url: this.cof + '/questions',
-      dataType: 'json'
-    }, callback);
-  },
-
-  getQuestion: function getQuestion(id, callback) {
-    this.ajax({
-      method: 'GET',
-      url: this.cof + '/questions' + id,
-      dataType: 'json'
-    }, callback);
-  },
-
-  listFists: function listFists(query, callback) {
-    this.ajax({
-      methosd: 'GET',
-      url: this.cof + '/fists' + query,
-      dataType: 'json'
-    }, callback);
-  },
-
   listProfiles: function listProfiles(query, callback) {
     this.ajax({
       methosd: 'GET',
@@ -66,16 +42,6 @@ var cofapi = {
       dataType: 'json'
     }, callback);
   },
-
-  getProfile: function getProfile(id, callback) {
-    this.ajax({
-      methosd: 'GET',
-      url: this.cof + '/profiles/' + id,
-      dataType: 'json'
-    }, callback);
-  },
-
-
 
   //Authenticated api actions
 
@@ -117,18 +83,6 @@ var cofapi = {
     this.ajax({
       method: 'POST',
       url: this.cof + '/questions',
-      headers: {
-        Authorization: 'Token token=' + token
-      },
-      data: data,
-      dataType: 'json'
-    }, callback);
-  },
-
-  updateQuestion: function (id, data, token, callback) {
-    this.ajax({
-      method: 'PATCH',
-      url: this.cof + '/questions/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },

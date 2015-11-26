@@ -55,15 +55,15 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: cofapi.cof + "/questions"
-    }).done(function(data){
+    }).done(function (data){
       var questionHTML = questionIndexTemplate({questions: data.questions});
       $("#allQuestions").html(questionHTML);
-    }).fail(function(data){
+    }).fail(function (data){
       console.error(data);
     });
   };
 
-  questionGet();
+  questionGet(); // As soon as all DOM loads get all the questions fo view.
 
   var userProfileGet = function () {
     var query = '?user_id=' + cofapi.id;
@@ -71,10 +71,10 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: cofapi.cof + "/profiles" + query
-    }).done(function(data){
+    }).done(function (data){
       var userProfileHTML = userprofileIndexTemplate({profiles: data.profiles});
       $("#userprofile").html(userProfileHTML);
-    }).fail(function(data){
+    }).fail(function (data){
       console.error(data);
     });
   };
@@ -85,10 +85,10 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: cofapi.cof + "/questions" + query
-    }).done(function(data){
+    }).done(function (data){
       var myQuestionHTML = myQuestionIndexTemplate({questions: data.questions});
       $("#myQuestions").html(myQuestionHTML);
-    }).fail(function(data){
+    }).fail(function (data){
       console.error(data);
     });
   };
@@ -99,10 +99,10 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: cofapi.cof + "/fists" + query
-    }).done(function(data){
+    }).done(function (data){
       var fistHTML = fistIndexTemplate({fists: data.fists});
       $("#myFists").html(fistHTML);
-    }).fail(function(data){
+    }).fail(function (data){
       console.error(data);
     });
   };
@@ -130,7 +130,7 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: cofapi.cof + "/fists" + query
-    }).done(function(data){
+    }).done(function (data){
       $('#result').text(JSON.stringify(data, null, 4));
       $('#five').text(data['5']);
       $('#four').text(data['4']);
@@ -138,7 +138,7 @@ $(document).ready(function() {
       $('#two').text(data['2']);
       $('#one').text(data['1']);
       visual.result();
-    }).fail(function(){
+    }).fail(function (data){
       console.error(data);
     });
   };

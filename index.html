@@ -149,14 +149,6 @@
             </form>
           </div>
 
-          <div id='questionDeleteInput'>
-            <form id="questionDeleteForm">
-              <label>Question to delete</label>
-              <input name="id" type="text" id="deleteQuestion" placeholder="ID of Question" required>
-              <button type="submit">Delete</button>
-            </form>
-          </div>
-
           <table class="table table-striped">
             <thead>
               <tr>
@@ -168,7 +160,6 @@
 
             <tbody id='allQuestions'>
               <script id="questions-index" type="text/x-handlebars-template">
-                <div>
                   {{#each questions}}
                   <tr>
                     <td><button data-question-id={{id}} data-button="rate" type="button" class="btn btn-success">Rate</button></td>
@@ -176,11 +167,10 @@
                     <td><button data-question-id={{id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
                   </tr>
                   {{/each}}
-                </div>
               </script>
             </tbody>
-
           </table>
+
       </div> <!-- /questionview -->
 
       <div class="myquestionview">
