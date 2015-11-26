@@ -162,7 +162,7 @@ $(document).ready(function() {
       $('#rateMsg').text('Please Login First');
       $('.rateButton').hide();
       visual.rate();
-      setTimeout(visual.home, 1500);
+      setTimeout(visual.home, 1200);
     }
     if (button === 'result') {
       resultGet();
@@ -178,11 +178,15 @@ $(document).ready(function() {
                           "profile_id": profileId,
                           "question_id": questionId
                           }};
+    if (value === "cancel") {
+      visual.home();
+      return;
+    }
     cofapi.createFist(data, token, callback);
     questionGet();
     $('#rateMsg').text('Submitted');
     $('.rateButton').hide();
-    setTimeout(visual.home, 1500);
+    setTimeout(visual.home, 1200);
   });
 
   $('#myQuestions').on('click', function () {
@@ -269,7 +273,7 @@ $(document).ready(function() {
       if (cofapi.profile === false && cofapi.token !== "") {
         $('.profile').show();
       }
-    }, 1500);
+    }, 1200);
   });
 
   $('#profileForm').on('submit', function(e) {

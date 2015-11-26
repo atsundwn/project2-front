@@ -99,9 +99,9 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Group</th>
+                <th class="tableheader">First Name</th>
+                <th class="tableheader">Last Name</th>
+                <th class="tableheader">Group</th>
               </tr>
             </thead>
 
@@ -152,9 +152,9 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Rate</th>
-                <th>Question</th>
-                <th>Result</th>
+                <th class="tableheader">Rate</th>
+                <th class="tableheader">Question</th>
+                <th class="tableheader">Result</th>
               </tr>
             </thead>
 
@@ -179,9 +179,9 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Delete</th>
-                <th>Topic</th>
-                <th>Result</th>
+                <th class="tableheader">Delete</th>
+                <th class="tableheader">Topic</th>
+                <th class="tableheader">Result</th>
               </tr>
             </thead>
 
@@ -207,10 +207,10 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th>Delete</th>
-                <th>Fist of Five</th>
-                <th>Question</th>
-                <th>Result</th>
+                <th class="tableheader">Delete</th>
+                <th class="tableheader">Fist of Five</th>
+                <th class="tableheader">Question</th>
+                <th class="tableheader">Result</th>
               </tr>
             </thead>
 
@@ -231,34 +231,34 @@
       </div> <!-- /myfistview -->
 
       <div class="resultview">
-        <h1>Results for Question:</h1>
-          <h3 id="resultQuestion">Question</h3>
+        <h1>Results for:</h1>
+          <h2 id="resultQuestion">Question</h2>
 
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Value</th>
-                <th>Count</th>
+                <th class="tableheader">Value</th>
+                <th class="tableheader">Count</th>
               </tr>
               <tr>
-                <td>5</td>
-                <td id="five">0</td>
+                <td class="tableheader">5</td>
+                <td class="tableheader" id="five">0</td>
               </tr>
               <tr>
-                <td>4</td>
-                <td id="four">0</td>
+                <td class="tableheader">4</td>
+                <td class="tableheader" id="four">0</td>
               </tr>
               <tr>
-                <td>3</td>
-                <td id="three">0</td>
+                <td class="tableheader">3</td>
+                <td class="tableheader" id="three">0</td>
               </tr>
               <tr>
-                <td>2</td>
-                <td id="two">0</td>
+                <td class="tableheader">2</td>
+                <td class="tableheader" id="two">0</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td id="one">0</td>
+                <td class="tableheader">1</td>
+                <td class="tableheader" id="one">0</td>
               </tr>
             </thead>
 
@@ -269,11 +269,14 @@
       <div class="rate">
         <h1 id="rateMsg">Rate</h1>
           <div>
-            <button class="rateButton" data-val="1">1</button>
-            <button class="rateButton" data-val="2">2</button>
-            <button class="rateButton" data-val="3">3</button>
-            <button class="rateButton" data-val="4">4</button>
-            <button class="rateButton" data-val="5">5</button>
+            <button class="rateButton btn" data-val="1">1</button>
+            <button class="rateButton btn" data-val="2">2</button>
+            <button class="rateButton btn" data-val="3">3</button>
+            <button class="rateButton btn" data-val="4">4</button>
+            <button class="rateButton btn" data-val="5">5</button>
+          </div>
+          <div>
+            <button id="cancelbutton" class="rateButton btn-warning" data-val="cancel">Cancel</button>
           </div>
       </div>
 
