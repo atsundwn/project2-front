@@ -110,6 +110,12 @@ $(document).ready(function() {
   var resultGet = function() {
     var id = $(event.target).data('question-id');
     var query = '?question_id=' + id;
+    $('#resultQuestion').text('');
+    $('#five').text('0');
+    $('#four').text('0');
+    $('#three').text('0');
+    $('#two').text('0');
+    $('#one').text('0');
 
     $.ajax({
       method: 'GET',
