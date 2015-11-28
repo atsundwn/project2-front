@@ -65,6 +65,17 @@ $(document).ready(function() {
 
   questionGet(); // As soon as all DOM loads get all the questions fo view.
 
+  var ratedGet = function () {
+    cofapi.fists.forEach(function (elem) {
+      $('#allQuestions .rated').each(function () {
+        if ($(this).find('.ratedbtn').data('question-id') === elem.question_id) {
+          console.log($(this).find('.ratedbtn').data('question-id'));
+          $(this).html('<button class="btn btn-warning">Rated</button>');
+        }
+      });
+    });
+  };
+
   var userProfileGet = function () {
     var query = '?user_id=' + cofapi.id;
 
@@ -74,13 +85,14 @@ $(document).ready(function() {
     }).done(function (data){
       var userProfileHTML = userprofileIndexTemplate({profiles: data.profiles});
       $("#userprofile").html(userProfileHTML);
+      cofapi.profile_id = data.profiles[0].id;
     }).fail(function (data){
       console.error(data);
     });
   };
 
   var myQuestionsGet = function() {
-    var query = '?profile_id=' + cofapi.id;
+    var query = '?profile_id=' + cofapi.profile_id;
 
     $.ajax({
       method: 'GET',
@@ -94,7 +106,7 @@ $(document).ready(function() {
   };
 
   var myFistsGet = function() {
-    var query = '?profile_id=' + cofapi.id;
+    var query = '?profile_id=' + cofapi.profile_id;
 
     $.ajax({
       method: 'GET',
@@ -102,6 +114,7 @@ $(document).ready(function() {
     }).done(function (data){
       var fistHTML = fistIndexTemplate({fists: data.fists});
       $("#myFists").html(fistHTML);
+      cofapi.fists = data.fists;
     }).fail(function (data){
       console.error(data);
     });
@@ -170,7 +183,7 @@ $(document).ready(function() {
   });
 
   $('.rateButton').on('click', function () {
-    var profileId = cofapi.id;
+    var profileId = cofapi.profile_id;
     var value = $(event.target).data('val');
     var token = cofapi.token;
     var data = { "fist": {
@@ -186,7 +199,9 @@ $(document).ready(function() {
     questionGet();
     $('#rateMsg').text('Submitted');
     $('.rateButton').hide();
-    setTimeout(visual.home, 1200);
+    setTimeout(visual.home, 1000);
+    setTimeout(myFistsGet, 500);
+    setTimeout(ratedGet, 1200);
   });
 
   $('#myQuestions').on('click', function () {
@@ -219,27 +234,13 @@ $(document).ready(function() {
         return;
       }
       questionGet();
+      setTimeout(myFistsGet, 500);
+      setTimeout(ratedGet, 1000);
       callback(null, data);
     };
     e.preventDefault();
     $('#questionForm').children('input').val('');
     cofapi.createQuestion(data, token, cb);
-  });
-
-  $('#questionDeleteForm').on('submit', function(e) {
-    var token = cofapi.token;
-    var id = $('#deleteQuestion').val();
-    var cb = function cb(error, data) {
-      if (error) {
-        callback(error);
-        return;
-      }
-      questionGet();
-      callback(null, data);
-    };
-    e.preventDefault();
-    $('#questionForm').children('input').val('');
-    cofapi.destroyQuestion(id, token, cb);
   });
 
   $('#registerForm').on('submit', function(e) {
@@ -269,6 +270,9 @@ $(document).ready(function() {
     $('#loginForm').children('input').val('');
     setTimeout(visual.home, 900);
     setTimeout(profileExist, 1000);
+    setTimeout(userProfileGet, 1100);
+    setTimeout(myFistsGet, 1200);
+    setTimeout(ratedGet, 1450);
     setTimeout(function() {
       if (cofapi.profile === false && cofapi.token !== "") {
         $('.profile').show();
@@ -277,7 +281,7 @@ $(document).ready(function() {
   });
 
   $('#profileForm').on('submit', function(e) {
-    var id = cofapi.id;
+    var id = cofapi.profile_id;
     var token = cofapi.token;
     var data = wrap('profile', form2object(this));
     var cb = function cb(error, data) {
@@ -294,10 +298,14 @@ $(document).ready(function() {
       cofapi.updateProfile(id, data, token, cb);
       visual.home();
       cofapi.profile = true;
+      setTimeout(myFistsGet, 700);
+      setTimeout(ratedGet, 1200);
     } else if (cofapi.profile === false) {
       cofapi.createProfile(data, token, cb);
       visual.home();
       cofapi.profile = true;
+      setTimeout(myFistsGet, 700);
+      setTimeout(ratedGet, 1200);
     } else {
       console.log('Didn\'t Work');
       return;
@@ -316,7 +324,10 @@ $(document).ready(function() {
       cofapi.token = '';
       cofapi.email = null;
       cofapi.profile = null;
-    }, 500);
+      cofapi.fists=[];
+      cofapi.profile_id = null;
+    }, 200);
+    setTimeout(questionGet, 500);
   });
 
   $('#myFists').on('click', function() {
@@ -332,6 +343,7 @@ $(document).ready(function() {
         }
         $('#result').text(JSON.stringify(data, null, 4));
         myFistsGet();
+        questionGet();
       });
       console.log('Fist deleted');
     } else if (button === 'result') {
@@ -348,4 +360,23 @@ $(document).ready(function() {
       visual.profileform();
     }
   });
+
+
+  $('#homeButton').on('click', function () {
+    visual.home();
+    myFistsGet();
+    setTimeout(ratedGet, 500);
+  });
+
+  $('#registerbutton').on('click', visual.register);
+
+  $('#loginbutton').on('click', visual.login);
+
+  $('#logoutbutton').on('click', visual.logout);
+
+  $('#loginHere').on('click', visual.login); //register screen
+
+  $('#fistbutton').on('click', visual.myfists);
+
+  $('#questionbutton').on('click', visual.myquestions);
 });

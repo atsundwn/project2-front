@@ -162,7 +162,7 @@
               <script id="questions-index" type="text/x-handlebars-template">
                   {{#each questions}}
                   <tr>
-                    <td><button data-question-id={{id}} data-button="rate" type="button" class="btn btn-success">Rate</button></td>
+                    <td class="rated"><button data-question-id={{id}} data-button="rate" type="button" class="btn btn-success ratedbtn">Rate</button></td>
                     <td>{{topic}}</td>
                     <td><button data-question-id={{id}} data-button="result" type="button" class="btn btn-success">Result</button></td>
                   </tr>

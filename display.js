@@ -77,20 +77,3 @@ var visual = {
     $('.questionview').show();
   }
 };
-
-$(document).ready(function () {
-
-  $('#homeButton').on('click', visual.home);
-
-  $('#registerbutton').on('click', visual.register);
-
-  $('#loginbutton').on('click', visual.login);
-
-  $('#logoutbutton').on('click', visual.logout);
-
-  $('#loginHere').on('click', visual.login); //register screen
-
-  $('#fistbutton').on('click', visual.myfists);
-
-  $('#questionbutton').on('click', visual.myquestions);
-});
