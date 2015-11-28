@@ -1,13 +1,16 @@
 'use strict';
 var cofapi = {
-  // cof: 'http://localhost:3000',
-  cof: 'https://shielded-hollows-9246.herokuapp.com',
+  cof: 'http://localhost:3000',
+  // cof: 'https://shielded-hollows-9246.herokuapp.com',
   id: null,
   token: '',
   email: null,
   profile: null,
   profile_id: null,
   fists: [],
+  given_name: null,
+  surname: null,
+  group: null,
 
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {

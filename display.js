@@ -9,7 +9,6 @@ var visual = {
     $('.questionview').css('display','none');
     $('.resultview').css('display','none');
     $('.myquestionview').css('display','none');
-    $('.profileview').css('display','none');
     $('.logout').css('display','none');
     $('.rate').css('display','none');
   },
