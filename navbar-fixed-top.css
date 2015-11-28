@@ -4,8 +4,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
-.register, .login, .profile, .myfistview, .resultview, .myquestionview, .profileview, .logout, .rate {
+.register, .login, .profile, .myfistview, .resultview, .myquestionview, .logout, .rate {
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: #F5F5DC;

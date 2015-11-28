@@ -93,36 +93,6 @@
         <h1>Logged out.</h1>
       </div>
 
-      <div class="profileview">
-        <h1>My Profile</h1>
-
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th class="tableheader">First Name</th>
-                <th class="tableheader">Last Name</th>
-                <th class="tableheader">Group</th>
-              </tr>
-            </thead>
-
-            <tbody id='userprofile'>
-              <script id="userprofile-index" type="text/x-handlebars-template">
-                <div>
-                  {{#each profiles}}
-                  <tr>
-                    <td>{{given_name}}</td>
-                    <td>{{surname}}</td>
-                    <td>{{group}}</td>
-                  </tr>
-                  {{/each}}
-                </div>
-              </script>
-            </tbody>
-
-          </table>
-
-      </div> <!-- /profileview -->
-
       <div class="profile">
 
         <form class="form-signin" id="profileForm">
