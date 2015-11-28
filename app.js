@@ -160,13 +160,13 @@ $(document).ready(function() {
     });
   };
 
-  $('#fistbutton').on('click touchstart', myFistsGet);
+  $('#fistbutton').on('click tap', myFistsGet);
 
-  $('#questionbutton').on('click touchstart', myQuestionsGet);
+  $('#questionbutton').on('click tap', myQuestionsGet);
 
   var questionId;
 
-  $('#allQuestions').on('click touchstart', function () {
+  $('#allQuestions').on('click tap', function () {
     var button = $(event.target).data('button');
     var token = cofapi.token;
 
@@ -186,7 +186,7 @@ $(document).ready(function() {
     }
   });
 
-  $('.rateButton').on('click touchstart', function () {
+  $('.rateButton').on('click tap', function () {
     var profileId = cofapi.profile_id;
     var value = $(event.target).data('val');
     var token = cofapi.token;
@@ -208,7 +208,7 @@ $(document).ready(function() {
     setTimeout(ratedGet, 1200);
   });
 
-  $('#myQuestions').on('click touchstart', function () {
+  $('#myQuestions').on('click tap', function () {
     var id = $(event.target).data('question-id');
     var button = $(event.target).data('button');
     var token = cofapi.token;
@@ -318,7 +318,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#logoutbutton').on('click touchstart', function() {
+  $('#logoutbutton').on('click tap', function() {
     var id = cofapi.id;
     var token = cofapi.token;
     cofapi.logout(id, token, callback);
@@ -339,7 +339,7 @@ $(document).ready(function() {
     setTimeout(questionGet, 500);
   });
 
-  $('#myFists').on('click touchstart', function() {
+  $('#myFists').on('click tap', function() {
     var id = $(event.target).data('fist-id');
     var button = $(event.target).data('button');
     var token = cofapi.token;
@@ -360,7 +360,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#profilebutton').on('click touchstart', function () {
+  $('#profilebutton').on('click tap', function () {
     if (cofapi.profile === true) {
       visual.profileform();
       userProfileGet();
@@ -369,21 +369,21 @@ $(document).ready(function() {
     }
   });
 
-  $('#homeButton').on('click touchstart', function () {
+  $('#homeButton').on('click tap', function () {
     visual.home();
     myFistsGet();
     setTimeout(ratedGet, 500);
   });
 
-  $('#registerbutton').on('click touchstart', visual.register);
+  $('#registerbutton').on('click tap', visual.register);
 
-  $('#loginbutton').on('click touchstart', visual.login);
+  $('#loginbutton').on('click tap', visual.login);
 
-  $('#logoutbutton').on('click touchstart', visual.logout);
+  $('#logoutbutton').on('click tap', visual.logout);
 
-  $('#loginHere').on('click touchstart', visual.login); //register screen
+  $('#loginHere').on('click tap', visual.login); //register screen
 
-  $('#fistbutton').on('click touchstart', visual.myfists);
+  $('#fistbutton').on('click tap', visual.myfists);
 
-  $('#questionbutton').on('click touchstart', visual.myquestions);
+  $('#questionbutton').on('click tap', visual.myquestions);
 });
